@@ -92,3 +92,10 @@ model.fit(train_dataset,train_labels,nb_epoch = 20, batch_size = batch_size,
 score = model.evaluate(test_dataset, test_labels, batch_size=batch_size)
 
 print ("\n", "Final test accuracy score: {}".format(score[1]))
+
+model_json = model.to_json()
+with open("conv_model.json", "w") as json_file:
+    json_file.write(model_json)
+# serialize weights to HDF5
+model.save_weights("conv_model.h5")
+print("Saved model to disk")
